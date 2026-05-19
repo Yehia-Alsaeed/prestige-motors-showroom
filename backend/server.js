@@ -75,22 +75,26 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || (process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1');
 
-if (process.env.USE_HTTPS === 'true') {
-  const certPath = process.env.SSL_CERT_PATH;
-  const keyPath = process.env.SSL_KEY_PATH;
-  
-  if (certPath && keyPath && fs.existsSync(certPath) && fs.existsSync(keyPath)) {
-    const httpsOptions = {
-      key: fs.readFileSync(keyPath),
-      cert: fs.readFileSync(certPath)
-    };
-    https.createServer(httpsOptions, app).listen(PORT, HOST, () => {
-      console.log(`HTTPS Server running on https://${HOST}:${PORT}`);
-    });
+if (require.main === module) {
+  if (process.env.USE_HTTPS === 'true') {
+    const certPath = process.env.SSL_CERT_PATH;
+    const keyPath = process.env.SSL_KEY_PATH;
+    
+    if (certPath && keyPath && fs.existsSync(certPath) && fs.existsSync(keyPath)) {
+      const httpsOptions = {
+        key: fs.readFileSync(keyPath),
+        cert: fs.readFileSync(certPath)
+      };
+      https.createServer(httpsOptions, app).listen(PORT, HOST, () => {
+        console.log(`HTTPS Server running on https://${HOST}:${PORT}`);
+      });
+    } else {
+      console.warn('[SECURITY WARNING] USE_HTTPS is true but SSL certificates are missing or invalid paths. Falling back to HTTP.');
+      app.listen(PORT, HOST, () => console.log(`HTTP Server (Fallback) running on http://${HOST}:${PORT}`));
+    }
   } else {
-    console.warn('[SECURITY WARNING] USE_HTTPS is true but SSL certificates are missing or invalid paths. Falling back to HTTP.');
-    app.listen(PORT, HOST, () => console.log(`HTTP Server (Fallback) running on http://${HOST}:${PORT}`));
+    app.listen(PORT, HOST, () => console.log(`HTTP Server running on http://${HOST}:${PORT}`));
   }
-} else {
-  app.listen(PORT, HOST, () => console.log(`HTTP Server running on http://${HOST}:${PORT}`));
 }
+
+module.exports = app;
