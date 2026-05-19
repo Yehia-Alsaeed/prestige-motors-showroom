@@ -8,3 +8,18 @@ backend/.env
 frontend/node_modules/
 frontend/dist/
 frontend/.env
+
+# Security Reports and Documents
+/Frontend_Security_Report.docx
+/frontend-phase4-testing-document.txt
+/Group 50 Phase 4.docx
+/Group 50_ FinalReport.docx
+/paper 1 (security).pdf
+/paper 2 (security).pdf
+/paper 3 (security).pdf
+/paper 4 (security).pdf
+/paper 5 (security).pdf
+/Project  (3).pdf
+/Security Group 50 (Phase 2).docx
+/Security Group 50 (Phase 3).docx
+/.claude
