@@ -90,7 +90,14 @@ npm install
 
 ### 3. Configure Environment Variables
 
-Create `backend/.env`:
+Copy the example environment files, then replace the placeholder values with your local credentials:
+
+```bash
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+```
+
+Backend variables in `backend/.env.example`:
 
 ```env
 PORT=5000
@@ -105,7 +112,7 @@ CLOUDINARY_API_SECRET=your-cloudinary-api-secret
 USE_HTTPS=false
 ```
 
-Create `frontend/.env`:
+Frontend variables in `frontend/.env.example`:
 
 ```env
 VITE_API_URL=http://localhost:5000
@@ -165,6 +172,7 @@ Set the backend environment variables in the Vercel project settings before depl
 ## Security Notes
 
 - `.env` files are ignored and should never be committed.
+- `.env.example` files are committed intentionally with placeholder values only.
 - JWT secrets, database URLs, and Cloudinary credentials must be configured through local or deployment environment variables.
 - Auth, offer, reservation, and API routes include rate limiting.
 - Admin-only routes are protected with JWT authentication and role checks.

@@ -33,7 +33,13 @@ src/
 
 ## Environment Variables
 
-Create `frontend/.env`:
+Copy the example file:
+
+```bash
+cp frontend/.env.example frontend/.env
+```
+
+Then update `frontend/.env` if the API runs somewhere other than `http://localhost:5000`:
 
 ```env
 VITE_API_URL=http://localhost:5000
