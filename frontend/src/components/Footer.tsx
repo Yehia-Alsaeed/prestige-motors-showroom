@@ -63,7 +63,7 @@ const Footer = () => {
               </div>
               <div className="flex items-start gap-3">
                 <Phone size={16} className="mt-1 flex-shrink-0 text-gold" />
-                <span>+20 100 000 0000</span>
+                <span>+20 106 000 6131</span>
               </div>
               <div className="flex items-start gap-3">
                 <Mail size={16} className="mt-1 flex-shrink-0 text-gold" />

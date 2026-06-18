@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# Prestige Motors Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This folder contains the React/Vite frontend for Prestige Motors, a showroom and used-car marketplace interface connected to the Express API in `../backend`.
 
-Currently, two official plugins are available:
+## Frontend Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS
+- Lucide React
+- React Hot Toast
 
-## React Compiler
+## Main Areas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Public pages: home, about, contact, new-car catalog, used-car catalog, and car details.
+- Customer pages: registration, login, dashboard, reservations, offers, personal listings, and sell-your-car submission.
+- Admin pages: admin login, dashboard metrics, inventory management, image gallery management, listing approvals, and reservation/offer review.
+- Shared layout: public navigation, admin navigation, route guards, and API request helpers.
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+  components/      Shared navigation, footer, and layout components
+  context/         Authentication state and token handling
+  pages/           Public, customer, and admin screens
+  pages/admin/     Protected admin dashboard workflows
+  utils/           API request helpers
+  config.ts        API base URL configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create `frontend/.env`:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_URL=http://localhost:5000
 ```
+
+For same-domain production deployments, set `VITE_API_URL` to an empty string so requests use relative `/api` paths.
+
+## Scripts
+
+```bash
+npm run dev      # Start local development server
+npm run build    # Type-check and create production build
+npm run lint     # Run ESLint
+npm run preview  # Preview the production build locally
+```
+
+## Development Notes
+
+- API requests are centralized through `src/utils/apiFetch.ts`.
+- Protected customer and admin routes are handled in `src/App.tsx`.
+- Authentication state is managed through `src/context/AuthContext.tsx`.
+- The frontend expects the backend API to be running locally at `http://localhost:5000` unless `VITE_API_URL` is changed.
