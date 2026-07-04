@@ -9,6 +9,14 @@ This repository is structured as a portfolio-ready full-stack project with a Rea
 - Live demo: https://prestige-motor.vercel.app/
 - Repository: https://github.com/Yehia-Alsaeed/prestige-motors-showroom
 
+## Screenshots
+
+![Prestige Motors homepage hero](docs/screenshots/home-hero-desktop.png)
+
+![Prestige Motors brand new collection](docs/screenshots/new-collection-desktop.png)
+
+![Prestige Motors used cars marketplace](docs/screenshots/used-cars-marketplace-desktop.png)
+
 ## Tech Stack
 
 | Layer | Technologies |
