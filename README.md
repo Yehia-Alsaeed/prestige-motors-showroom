@@ -2,7 +2,7 @@
 
 Prestige Motors is a responsive full-stack MERN showroom platform for browsing premium vehicle inventory, reserving new cars, negotiating used-car offers, submitting customer listings, and managing the complete admin approval workflow across desktop and mobile.
 
-This repository is structured as a portfolio-ready full-stack project with a React/Vite frontend, an Express/MongoDB API, Cloudinary image uploads, JWT authentication, role-based admin access, and Vercel deployment configuration.
+The project includes a React/Vite frontend, an Express/MongoDB API, Cloudinary image uploads, JWT authentication, role-based admin access, and Vercel deployment configuration.
 
 ## Live Project
 
@@ -31,36 +31,28 @@ This repository is structured as a portfolio-ready full-stack project with a Rea
 ### Customer Experience
 
 - Fully responsive public and customer-facing interface with mobile navigation, readable cards, and mobile-friendly forms.
-- Browse brand-new and pre-owned cars in separate catalog views.
-- Search, filter, and sort inventory by brand, body type, fuel type, transmission, year, mileage, and price.
+- Browse, search, filter, and sort brand-new and pre-owned vehicle inventory.
 - View detailed vehicle pages with image galleries, specifications, pricing, and availability status.
-- Register, log in, and manage customer profile details.
-- Reserve new vehicles at fixed showroom prices.
-- Submit offers on used vehicles within a controlled negotiation range.
-- Track reservations, offers, personal listings, and incoming buyer offers from a customer dashboard.
-- Submit a used-car listing with vehicle details, uploaded photos, and seller commission agreement.
+- Register, log in, manage profile details, and track reservations, offers, listings, and incoming buyer offers.
+- Reserve new vehicles at fixed showroom prices or submit negotiated offers on used vehicles.
+- Submit used-car listings with vehicle details, uploaded photos, and seller commission agreement.
 
 ### Admin Experience
 
 - Mobile-friendly admin shell with responsive navigation, dashboards, tables, cards, and management modals.
 - Protected admin login and admin-only dashboard routes.
-- Dashboard metrics for inventory, customers, reservations, pending offers, and sales pipeline value.
-- Manage available inventory and mark vehicles as sold.
-- Upload, replace, reorder, and save vehicle image galleries.
-- Review customer-submitted used-car listings.
-- Approve listings for publication or reject them with customer-facing feedback.
-- Review offers and reservations across showroom-owned and customer-listed vehicles.
+- Dashboard metrics for inventory, customers, reservations, offers, and sales pipeline value.
+- Manage inventory, mark vehicles as sold, and update vehicle image galleries.
+- Review customer-submitted listings and approve or reject them with customer-facing feedback.
+- Review reservations and offers across showroom-owned and customer-listed vehicles.
 - Reserve vehicles, reject offers, confirm completed sales, or return vehicles to display.
 
 ### Backend Capabilities
 
-- REST API organized by authentication, cars, offers, reservations, customers, and uploads.
+- REST API for authentication, inventory, offers, reservations, customers, and uploads.
 - MongoDB models for users, cars, offers, and reservations.
-- JWT authentication with customer and admin authorization guards.
-- Password hashing through bcrypt.
-- Cloudinary image upload pipeline with file size limits and image transformation.
-- Rate limiting for API, login, reservation, and offer endpoints.
-- Configurable CORS, HTTPS support, and deployment-friendly environment variables.
+- JWT authentication, role-based guards, bcrypt password hashing, and API rate limiting.
+- Cloudinary upload pipeline with file limits and deployment-friendly environment configuration.
 
 ## Repository Structure
 
@@ -106,28 +98,9 @@ cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
 ```
 
-Backend variables in `backend/.env.example`:
+See `backend/.env.example` and `frontend/.env.example` for the full list of required variables.
 
-```env
-PORT=5000
-HOST=127.0.0.1
-NODE_ENV=development
-MONGO_URI=mongodb://localhost:27017/carshowroom
-JWT_SECRET=replace-with-a-strong-secret
-FRONTEND_URL=http://localhost:5173
-CLOUDINARY_CLOUD_NAME=your-cloudinary-cloud-name
-CLOUDINARY_API_KEY=your-cloudinary-api-key
-CLOUDINARY_API_SECRET=your-cloudinary-api-secret
-USE_HTTPS=false
-```
-
-Frontend variables in `frontend/.env.example`:
-
-```env
-VITE_API_URL=http://localhost:5000
-```
-
-For same-domain production deployments, `VITE_API_URL` can be set to an empty string so the frontend uses relative `/api` paths.
+For same-domain production deployments, `VITE_API_URL` can be set to an empty string so frontend requests use relative `/api` paths.
 
 ### 4. Run the Backend
 
@@ -185,8 +158,3 @@ Set the backend environment variables in the Vercel project settings before depl
 - JWT secrets, database URLs, and Cloudinary credentials must be configured through local or deployment environment variables.
 - Auth, offer, reservation, and API routes include rate limiting.
 - Admin-only routes are protected with JWT authentication and role checks.
-- Demo credentials and seed data should be used only for local development.
-
-## Project Status
-
-Prestige Motors is a complete portfolio project demonstrating full-stack application development, role-based workflows, API design, database modeling, image uploads, authentication, deployment configuration, and a polished responsive customer/admin interface.
