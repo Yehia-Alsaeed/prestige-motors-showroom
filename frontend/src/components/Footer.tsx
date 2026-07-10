@@ -6,18 +6,18 @@ const Footer = () => {
     <footer className="mt-20 border-t border-subtle bg-section/95">
       <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-8 py-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr_1fr] gap-10">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <img
                 src="https://res.cloudinary.com/ddpmrivna/image/upload/v1774280433/prestige-motors-assets/logo.png"
                 alt="Prestige Motors Logo"
-                className="h-11 w-auto object-contain"
+                className="h-10 sm:h-11 w-auto object-contain"
               />
-              <div>
-                <h3 className="text-2xl font-bold tracking-[0.25em] uppercase text-primary">Prestige Motors</h3>
-                <p className="text-[11px] uppercase tracking-[0.35em] text-gold/80">Luxury. Trust. Precision.</p>
+              <div className="min-w-0">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-[0.16em] sm:tracking-[0.25em] uppercase text-primary">Prestige Motors</h3>
+                <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] sm:tracking-[0.35em] text-gold/80">Luxury. Trust. Precision.</p>
               </div>
             </div>
 
@@ -26,17 +26,17 @@ const Footer = () => {
               We combine verified inventory, transparent pricing, and guided reservations so every customer can buy with confidence.
             </p>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
               <Link
                 to="/cars"
-                className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-sm font-bold text-gold transition hover:bg-gold hover:text-main"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-sm font-bold text-gold transition hover:bg-gold hover:text-main"
               >
                 Visit Showroom
                 <ArrowRight size={14} />
               </Link>
               <Link
                 to="/sell-your-car"
-                className="inline-flex items-center gap-2 rounded-full border border-subtle px-4 py-2 text-sm font-bold text-primary transition hover:border-gold/40 hover:text-gold"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-subtle px-4 py-2 text-sm font-bold text-primary transition hover:border-gold/40 hover:text-gold"
               >
                 Sell Your Car
               </Link>

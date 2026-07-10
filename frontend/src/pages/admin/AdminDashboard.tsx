@@ -30,14 +30,14 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-primary mb-8 border-b border-subtle pb-4">Dashboard Overview</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8 border-b border-subtle pb-4">Dashboard Overview</h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-5 sm:gap-6 mb-10 sm:mb-12">
         <div className="bg-card border border-subtle p-6 rounded-lg">
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-secondary text-sm">Total Cars</p>
-              <h3 className="text-3xl font-bold text-primary">{stats?.cars?.total || 0}</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-primary">{stats?.cars?.total || 0}</h3>
             </div>
             <div className="bg-main p-3 rounded text-gold"><Car size={24} /></div>
           </div>
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-secondary text-sm">Reservations & Offers</p>
-              <h3 className="text-3xl font-bold text-primary">{stats?.reservations?.total || 0}</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-primary">{stats?.reservations?.total || 0}</h3>
             </div>
             <div className="bg-main p-3 rounded text-gold"><CalendarDays size={24} /></div>
           </div>
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-secondary text-sm">Total Customers</p>
-              <h3 className="text-3xl font-bold text-primary">{stats?.users?.total || 0}</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-primary">{stats?.users?.total || 0}</h3>
             </div>
             <div className="bg-main p-3 rounded text-gold"><Users size={24} /></div>
           </div>
@@ -73,7 +73,7 @@ const AdminDashboard = () => {
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-secondary text-sm">Pending Pipeline</p>
-              <h3 className="text-3xl font-bold text-primary max-w-full overflow-hidden text-ellipsis">
+              <h3 className="text-2xl sm:text-3xl font-bold text-primary max-w-full overflow-hidden text-ellipsis">
                 {stats?.pipeline?.pending ? formatEGP(stats.pipeline.pending) : '0 EGP'}
               </h3>
             </div>
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-secondary text-sm">Sold Pipeline</p>
-              <h3 className="text-3xl font-bold text-primary max-w-full overflow-hidden text-ellipsis">
+              <h3 className="text-2xl sm:text-3xl font-bold text-primary max-w-full overflow-hidden text-ellipsis">
                 {stats?.pipeline?.sold ? formatEGP(stats.pipeline.sold) : '0 EGP'}
               </h3>
             </div>
@@ -103,11 +103,11 @@ const AdminDashboard = () => {
       
       <div className="bg-card border border-subtle rounded-lg p-6 text-center">
         <h2 className="text-xl font-bold text-primary mb-4">Quick Actions</h2>
-        <div className="flex justify-center gap-4">
-          <Link to="/admin/cars" className="bg-gold text-main px-6 py-3 rounded font-bold hover:bg-yellow-600 transition tracking-wide text-sm">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+          <Link to="/admin/cars" className="bg-gold text-main px-6 py-3 rounded font-bold hover:bg-yellow-600 transition tracking-wide text-sm text-center">
             Manage Inventory
           </Link>
-          <Link to="/admin/reservations" className="border border-gold text-gold px-6 py-3 rounded font-bold hover:bg-gold/10 transition tracking-wide text-sm">
+          <Link to="/admin/reservations" className="border border-gold text-gold px-6 py-3 rounded font-bold hover:bg-gold/10 transition tracking-wide text-sm text-center">
             Review Offers
           </Link>
         </div>

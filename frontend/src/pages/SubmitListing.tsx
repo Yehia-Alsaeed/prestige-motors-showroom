@@ -18,7 +18,7 @@ const SubmitListing = () => {
   });
 
   const brandList = ['Nissan','Hyundai','Kia','MG','Chery','BYD','Jetour','Toyota','Skoda','GAC','BMW','Audi','Mercedes-Benz','Ferrari','Bentley','Aston Martin','Lamborghini','Rolls-Royce','Other'];
-  const bodyTypes = ['Sedan','SUV','Crossover','Hatchback','Coupe','Convertible','Fastback','Gran Coupe','Roadster','Full-size SUV','Off-road SUV'];
+  const bodyTypes = ['Sedan','SUV','Crossover','Hatchback','Coupe','Convertible','Fastback','Gran Coupe','Roadster','Full-size SUV','Coupe SUV','Off-road SUV'];
   const fuelTypes = ['Petrol','Diesel','Electric','Hybrid'];
   const transmissions = ['Automatic','Manual'];
   const years = Array.from({length: 20}, (_, i) => 2026 - i);
@@ -77,20 +77,20 @@ const SubmitListing = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
       <div className="mb-12 text-center max-w-2xl mx-auto">
-        <h1 className="text-5xl font-bold text-primary mb-4 tracking-tight">Sell Your Car with Us</h1>
-        <p className="text-secondary text-lg leading-relaxed">Join Egypt's most trusted luxury car network. We handle the marketing, the negotiation, and the paperwork while you sit back and wait for the best offer.</p>
+        <h1 className="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight leading-tight">Sell Your Car with Us</h1>
+        <p className="text-secondary text-base sm:text-lg leading-7 sm:leading-relaxed">Join Egypt's most trusted luxury car network. We handle the marketing, the negotiation, and the paperwork while you sit back and wait for the best offer.</p>
       </div>
 
       {/* Why Sell with Us? Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-10 sm:mb-12">
         {[
           { icon: '💎', title: 'Quality Guaranteed', desc: 'Every car we list goes through a prestige check, ensuring higher trust from buyers.' },
           { icon: '⚡', title: 'Fast Selling', desc: 'Our targeted network of luxury car enthusiasts ensures your car sells 3x faster than traditional apps.' },
           { icon: '🛡️', title: 'Secure Transactions', desc: 'We handle the financial escrow and paperwork to protect both buyer and seller.' }
         ].map((item, i) => (
-          <div key={i} className="bg-card border border-subtle p-6 rounded-xl hover:border-gold transition-colors duration-500">
+          <div key={i} className="bg-card border border-subtle p-5 sm:p-6 rounded-xl hover:border-gold transition-colors duration-500">
             <div className="text-3xl mb-3">{item.icon}</div>
             <h3 className="text-primary font-bold mb-2">{item.title}</h3>
             <p className="text-secondary text-sm leading-relaxed">{item.desc}</p>
@@ -99,12 +99,12 @@ const SubmitListing = () => {
       </div>
 
       {/* Commission Notice */}
-      <div className="bg-gold/10 border border-gold/30 rounded-xl p-6 mb-12 flex flex-col md:flex-row items-center gap-6">
+      <div className="bg-gold/10 border border-gold/30 rounded-xl p-5 sm:p-6 mb-10 sm:mb-12 flex flex-col md:flex-row items-stretch md:items-center gap-5 sm:gap-6">
         <div className="flex-grow">
           <h3 className="text-gold font-bold text-xl mb-1 flex items-center gap-2">Showroom Service Fee: 6%</h3>
           <p className="text-secondary text-sm">To provide premium photography, marketing, and negotiation support, we charge a fixed <span className="text-primary font-bold">6% commission</span> on the final agreed sale price of your vehicle. You only pay when your car sells!</p>
         </div>
-        <div className="flex items-center gap-3 bg-card p-4 rounded-lg border border-subtle whitespace-nowrap">
+        <div className="flex items-center gap-3 bg-card p-4 rounded-lg border border-subtle">
           <input 
             type="checkbox" 
             id="agreement" 
@@ -119,11 +119,11 @@ const SubmitListing = () => {
       <div className={!agreed ? 'opacity-30 pointer-events-none grayscale transition-all duration-700' : 'transition-all duration-700'}>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Image Upload */}
-          <div className="bg-card border border-subtle rounded-lg p-6">
+          <div className="bg-card border border-subtle rounded-lg p-4 sm:p-6">
             <h2 className="text-lg font-bold text-primary mb-1 flex items-center gap-2"><Camera size={20} className="text-gold"/> Vehicle Photos</h2>
             <p className="text-secondary text-sm mb-4">Upload 3–6 high-quality photos. The first photo will be your main listing image.</p>
             
-            <div className="grid grid-cols-3 gap-3 mb-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
               {images.map((url, i) => (
                 <div key={i} className="relative aspect-video bg-main rounded overflow-hidden border border-subtle group">
                   <img src={url} alt={`Car ${i+1}`} className="w-full h-full object-cover" />
@@ -143,9 +143,9 @@ const SubmitListing = () => {
           </div>
 
           {/* Vehicle Details */}
-          <div className="bg-card border border-subtle rounded-lg p-6 space-y-4">
+          <div className="bg-card border border-subtle rounded-lg p-4 sm:p-6 space-y-4">
             <h2 className="text-lg font-bold text-primary mb-2">Vehicle Details</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs text-secondary font-bold uppercase tracking-wider">Brand *</label>
                 <select required value={form.brand} onChange={e => setForm({...form, brand: e.target.value})} className="w-full bg-main border border-subtle rounded p-2.5 text-primary focus:border-gold outline-none mt-1">
@@ -158,7 +158,7 @@ const SubmitListing = () => {
                 <input required value={form.model} onChange={e => setForm({...form, model: e.target.value})} className="w-full bg-main border border-subtle rounded p-2.5 text-primary focus:border-gold outline-none mt-1" placeholder="e.g. Corolla 2023" />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="text-xs text-secondary font-bold uppercase tracking-wider">Year *</label>
                 <select required value={form.year} onChange={e => setForm({...form, year: Number(e.target.value)})} className="w-full bg-main border border-subtle rounded p-2.5 text-primary focus:border-gold outline-none mt-1">
@@ -174,7 +174,7 @@ const SubmitListing = () => {
                 <input type="number" required min={0} value={form.mileage || ''} onChange={e => setForm({...form, mileage: Number(e.target.value)})} className="w-full bg-main border border-subtle rounded p-2.5 text-primary focus:border-gold outline-none mt-1" />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="text-xs text-secondary font-bold uppercase tracking-wider">Fuel Type *</label>
                 <select required value={form.fuelType} onChange={e => setForm({...form, fuelType: e.target.value})} className="w-full bg-main border border-subtle rounded p-2.5 text-primary focus:border-gold outline-none mt-1">

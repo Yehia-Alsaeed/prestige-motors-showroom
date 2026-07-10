@@ -17,10 +17,10 @@ const Register = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   return (
-    <div className="min-h-[70vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-card p-10 rounded-lg border border-subtle">
+    <div className="min-h-[70vh] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6 sm:space-y-8 bg-card p-6 sm:p-10 rounded-lg border border-subtle">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-primary">Create an account</h2>
+          <h2 className="mt-2 sm:mt-6 text-center text-2xl sm:text-3xl font-extrabold text-primary">Create an account</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={async (e) => {
           e.preventDefault();
@@ -39,14 +39,14 @@ const Register = () => {
             } else {
               toast.error(data.message || 'Registration failed.');
             }
-          } catch (err) {
+          } catch {
             toast.error('Server error. Please try again.');
           } finally {
             setLoading(false);
           }
         }}>
           <div className="rounded-md shadow-sm space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-1">First Name</label>
                 <input type="text" required value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full bg-main border border-subtle rounded p-3 text-primary focus:outline-none focus:border-gold transition" placeholder="John" />
@@ -60,7 +60,7 @@ const Register = () => {
               <label className="block text-sm font-medium text-secondary mb-1">Street Address (Optional)</label>
               <input type="text" value={address} onChange={e => setAddress(e.target.value)} className="w-full bg-main border border-subtle rounded p-3 text-primary focus:outline-none focus:border-gold transition" placeholder="123 Luxury Blvd" />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-1">City (Optional)</label>
                 <input type="text" value={city} onChange={e => setCity(e.target.value)} className="w-full bg-main border border-subtle rounded p-3 text-primary focus:outline-none focus:border-gold transition" placeholder="New York" />

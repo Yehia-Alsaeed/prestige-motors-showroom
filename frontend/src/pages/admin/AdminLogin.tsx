@@ -28,7 +28,7 @@ const AdminLogin = () => {
       } else {
         toast.error(data.message || 'Access Denied. Invalid admin credentials.');
       }
-    } catch (err) {
+    } catch {
       toast.error('Server error. Please try again.');
     } finally {
       setLoading(false);
@@ -37,8 +37,8 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen bg-main flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-card p-10 rounded-lg border border-subtle shadow-2xl">
-        <h1 className="text-3xl font-bold text-primary mb-2 text-center">Admin Access</h1>
+      <div className="w-full max-w-md bg-card p-6 sm:p-10 rounded-lg border border-subtle shadow-2xl">
+        <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-2 text-center">Admin Access</h1>
         <p className="text-secondary text-sm text-center mb-8">Restricted personnel only</p>
         
         <form onSubmit={handleLogin} className="space-y-6">

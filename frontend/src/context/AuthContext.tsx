@@ -17,49 +17,58 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const clearStoredAuth = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  localStorage.removeItem('role');
+};
+
+const readStoredAuth = () => {
+  const storedToken = localStorage.getItem('token');
+  const storedUser = localStorage.getItem('user');
+  const storedRole = localStorage.getItem('role');
+
+  if (!storedToken || !storedUser || !storedRole) {
+    return { token: null, user: null, role: null };
+  }
+
+  try {
+    return {
+      token: storedToken,
+      user: JSON.parse(storedUser) as User,
+      role: storedRole,
+    };
+  } catch {
+    clearStoredAuth();
+    return { token: null, user: null, role: null };
+  }
+};
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [role, setRole] = useState<string | null>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const storedAuth = readStoredAuth();
+  const [user, setUser] = useState<User | null>(storedAuth.user);
+  const [role, setRole] = useState<string | null>(storedAuth.role);
+  const [token, setToken] = useState<string | null>(storedAuth.token);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    const storedRole = localStorage.getItem('role');
-    
-    if (storedToken && storedUser && storedRole) {
-      // M9: Safely parse localStorage — corrupted data won't crash the app
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setToken(storedToken);
-        setUser(parsedUser);
-        setRole(storedRole);
+    if (!token) return;
 
-        // M10: Verify the stored token is still valid by calling the backend
-        apiFetch('/api/auth/profile', {}, storedToken)
-          .then(res => {
-            if (!res.ok) {
-              // Token is expired, revoked, or account is disabled — force logout
-              setUser(null);
-              setRole(null);
-              setToken(null);
-              localStorage.removeItem('token');
-              localStorage.removeItem('user');
-              localStorage.removeItem('role');
-            }
-          })
-          .catch(() => {
-            // Network error — keep local state but don't crash
-            // The user will see failures when they try to do authenticated actions
-          });
-      } catch {
-        // M9: Corrupted localStorage data — clear it out
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        localStorage.removeItem('role');
-      }
-    }
-  }, []);
+    // M10: Verify the stored token is still valid by calling the backend.
+    apiFetch('/api/auth/profile', {}, token)
+      .then(res => {
+        if (!res.ok) {
+          // Token is expired, revoked, or account is disabled — force logout.
+          setUser(null);
+          setRole(null);
+          setToken(null);
+          clearStoredAuth();
+        }
+      })
+      .catch(() => {
+        // Network error — keep local state but don't crash.
+        // The user will see failures when they try to do authenticated actions.
+      });
+  }, [token]);
 
   const login = (userData: User, userRole: string, jwtToken: string) => {
     setUser(userData);
@@ -74,9 +83,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(null);
     setRole(null);
     setToken(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('role');
+    clearStoredAuth();
   };
 
   return (

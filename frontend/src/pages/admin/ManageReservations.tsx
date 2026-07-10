@@ -99,14 +99,14 @@ const ManageReservations = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-primary mb-8 border-b border-subtle pb-4">Manage Reservations & Offers</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8 border-b border-subtle pb-4">Manage Reservations & Offers</h1>
 
       {loading ? (
         <div className="text-secondary text-center py-10 tracking-widest uppercase text-sm animate-pulse">Synchronizing database...</div>
       ) : (
         <div className="bg-card border border-subtle rounded-lg overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full min-w-[860px] text-left border-collapse">
               <thead>
                 <tr className="border-b border-subtle text-secondary bg-main/50">
                   <th className="py-4 px-6 font-bold text-xs uppercase tracking-widest">Customer</th>

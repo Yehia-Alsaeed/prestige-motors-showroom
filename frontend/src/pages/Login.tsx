@@ -11,10 +11,10 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   return (
-    <div className="min-h-[70vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-card p-10 rounded-lg border border-subtle">
+    <div className="min-h-[70vh] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6 sm:space-y-8 bg-card p-6 sm:p-10 rounded-lg border border-subtle">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-primary">Sign in to your account</h2>
+          <h2 className="mt-2 sm:mt-6 text-center text-2xl sm:text-3xl font-extrabold text-primary">Sign in to your account</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={async (e) => {
           e.preventDefault();
@@ -33,7 +33,7 @@ const Login = () => {
             } else {
               toast.error(data.message || 'Account does not exist or invalid credentials.');
             }
-          } catch (err) {
+          } catch {
             toast.error('Server error. Please try again.');
           } finally {
             setLoading(false);

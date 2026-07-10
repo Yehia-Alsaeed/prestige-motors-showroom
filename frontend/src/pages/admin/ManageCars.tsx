@@ -175,8 +175,8 @@ const ManageCars = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-10 border-b border-subtle pb-4">
-        <h1 className="text-3xl font-bold text-primary">Inventory Management</h1>
+      <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mb-8 sm:mb-10 border-b border-subtle pb-4">
+        <h1 className="text-2xl sm:text-3xl font-bold text-primary">Inventory Management</h1>
         <div className="bg-card px-4 py-2 rounded border border-subtle text-xs text-secondary font-bold uppercase tracking-widest">
           {cars.length} Total Vehicles
         </div>
@@ -186,7 +186,7 @@ const ManageCars = () => {
         <>
           <div className="bg-card border border-subtle rounded-xl overflow-hidden shadow-2xl">
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full min-w-[760px] text-left border-collapse">
                 <thead>
                   <tr className="border-b border-subtle text-secondary bg-main/50">
                     <th className="py-4 px-6 font-bold text-xs uppercase tracking-widest">Vehicle</th>
@@ -252,12 +252,12 @@ const ManageCars = () => {
       {editingCar && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-card w-full max-w-2xl rounded-lg border border-subtle shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-            <div className="flex justify-between items-center p-4 border-b border-subtle bg-section">
-              <h2 className="font-bold text-primary text-lg">Manage Gallery: {editingCar.brand} {editingCar.model}</h2>
+            <div className="flex items-start justify-between gap-3 p-4 border-b border-subtle bg-section">
+              <h2 className="font-bold text-primary text-base sm:text-lg leading-tight">Manage Gallery: {editingCar.brand} {editingCar.model}</h2>
               <button onClick={() => setEditingCar(null)} className="text-secondary hover:text-primary transition"><X size={20}/></button>
             </div>
             
-            <div className="p-6 overflow-y-auto">
+            <div className="p-4 sm:p-6 overflow-y-auto">
               <div 
                 className="border-2 border-dashed border-subtle rounded-lg p-6 text-center hover:bg-main hover:border-gold transition cursor-pointer mb-6"
                 onClick={() => fileInputRef.current?.click()}
@@ -270,7 +270,7 @@ const ManageCars = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
                 {stagedPhotos.map((photo, i) => (
                   <div key={photo.id} className="flex flex-col gap-2">
                     <div className="aspect-[4/3] rounded-lg border border-subtle overflow-hidden relative group/item bg-main">
@@ -305,9 +305,9 @@ const ManageCars = () => {
               </div>
             </div>
             
-            <div className="p-4 border-t border-subtle bg-section flex justify-between items-center">
+            <div className="p-4 border-t border-subtle bg-section flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
               <p className="text-xs text-secondary font-medium">Reorder photos using arrows. First photo is used as thumbnail.</p>
-              <div className="flex gap-3">
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <button disabled={uploading} onClick={() => setEditingCar(null)} className="px-4 py-2 rounded text-sm font-bold border border-subtle text-secondary hover:bg-main transition">Cancel</button>
                 <button 
                   disabled={uploading || stagedPhotos.length === 0} 

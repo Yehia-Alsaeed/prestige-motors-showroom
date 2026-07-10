@@ -265,17 +265,17 @@ const CustomerDashboard = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-8 py-12">
-      <h1 className="text-3xl font-bold text-primary mb-8 border-b border-subtle pb-4">My Dashboard</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8 border-b border-subtle pb-4">My Dashboard</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10 sm:mb-12">
         <div className="bg-card border border-subtle rounded-lg p-6 flex flex-col">
           <div className="flex justify-center mb-4">
             <div className="bg-main p-4 rounded-full"><User size={32} className="text-gold" /></div>
           </div>
           {isEditing ? (
             <div className="w-full space-y-4 h-full flex flex-col">
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div>
                   <label className="text-xs text-secondary font-bold uppercase tracking-wider">First Name</label>
                   <input type="text" value={editForm.firstName} onChange={e => setEditForm({ ...editForm, firstName: e.target.value })} className="w-full bg-main border border-subtle rounded p-2 text-primary focus:border-gold outline-none mt-1" />
@@ -323,8 +323,8 @@ const CustomerDashboard = () => {
           )}
         </div>
 
-        <div className="md:col-span-2 bg-card border border-subtle rounded-lg p-6">
-          <div className="flex gap-1 mb-6 border-b border-subtle pb-3 flex-wrap">
+        <div className="md:col-span-2 bg-card border border-subtle rounded-lg p-4 sm:p-6 min-w-0">
+          <div className="flex gap-2 mb-6 border-b border-subtle pb-3 overflow-x-auto">
             {[
               { key: 'reservations', label: 'Reservations', icon: Calendar },
               { key: 'listings', label: 'My Listings', icon: Car },
@@ -332,7 +332,7 @@ const CustomerDashboard = () => {
               { key: 'incoming', label: 'Buyer Offers', icon: MessageSquare }
             ].map(tab => (
               <button key={tab.key} onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-t text-sm font-bold transition ${activeTab === tab.key ? 'text-gold border-b-2 border-gold' : 'text-secondary hover:text-primary'}`}>
+                className={`flex shrink-0 items-center gap-2 px-3 sm:px-4 py-2 rounded-t text-sm font-bold transition ${activeTab === tab.key ? 'text-gold border-b-2 border-gold' : 'text-secondary hover:text-primary'}`}>
                 <tab.icon size={16} /> {tab.label}
                 {tab.key === 'incoming' && pendingIncomingOffers > 0 && (
                   <span className="min-w-5 h-5 px-1 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center">
@@ -346,13 +346,13 @@ const CustomerDashboard = () => {
           {activeTab === 'reservations' && (
             <div className="space-y-4">
               {reservationOffers.length === 0 ? (
-                <div className="bg-main border border-subtle rounded p-8 text-center text-secondary">
+                <div className="bg-main border border-subtle rounded p-6 sm:p-8 text-center text-secondary">
                   You do not have any active or settled reservations.
                 </div>
               ) : (
                 reservationOffers.map((offer) => (
-                  <div key={offer._id} className="bg-main border border-subtle rounded-lg p-4 flex items-start gap-4">
-                    <div className="w-20 h-14 rounded overflow-hidden bg-section flex-shrink-0">
+                  <div key={offer._id} className="bg-main border border-subtle rounded-lg p-4 flex flex-col sm:flex-row sm:items-start gap-4">
+                    <div className="w-full h-36 sm:w-20 sm:h-14 rounded overflow-hidden bg-section flex-shrink-0">
                       {offer.car?.images?.[0] && !offer.car.images[0].includes('placeholder') ? (
                         <img src={offer.car.images[0]} alt="" className="w-full h-full object-cover" />
                       ) : <div className="w-full h-full flex items-center justify-center text-2xl">CAR</div>}
@@ -377,18 +377,18 @@ const CustomerDashboard = () => {
 
           {activeTab === 'listings' && (
             <div className="space-y-4">
-              <div className="flex justify-end">
-                <Link to="/sell-your-car" className="bg-gold text-main px-4 py-2 rounded font-bold text-sm hover:bg-yellow-600 transition flex items-center gap-2"><Plus size={16} /> List a Car</Link>
+              <div className="flex sm:justify-end">
+                <Link to="/sell-your-car" className="w-full sm:w-auto bg-gold text-main px-4 py-2 rounded font-bold text-sm hover:bg-yellow-600 transition flex items-center justify-center gap-2"><Plus size={16} /> List a Car</Link>
               </div>
               {myListings.length === 0 ? (
-                <div className="bg-main border border-subtle rounded p-8 text-center text-secondary">
+                <div className="bg-main border border-subtle rounded p-6 sm:p-8 text-center text-secondary">
                   You have no active listing notifications. <Link to="/sell-your-car" className="text-gold hover:underline ml-1">Sell your car</Link>
                 </div>
               ) : (
                 myListings.map((car) => (
                   <div key={car._id} className={`bg-main border rounded-lg p-4 transition-all ${car.listingStatus === 'rejected' ? 'border-red-500/50 bg-red-900/10' : 'border-subtle'}`}>
-                    <div className="flex items-start gap-4">
-                      <div className="w-20 h-14 rounded overflow-hidden bg-section flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                      <div className="w-full h-36 sm:w-20 sm:h-14 rounded overflow-hidden bg-section flex-shrink-0">
                         {car.images?.[0] && !car.images[0].includes('placeholder') ? (
                           <img src={car.images[0]} alt={car.model} className="w-full h-full object-cover" />
                         ) : <div className="w-full h-full flex items-center justify-center text-2xl">CAR</div>}
@@ -428,13 +428,13 @@ const CustomerDashboard = () => {
           {activeTab === 'offers' && (
             <div className="space-y-4">
               {standardOffers.length === 0 ? (
-                <div className="bg-main border border-subtle rounded p-8 text-center text-secondary">
+                <div className="bg-main border border-subtle rounded p-6 sm:p-8 text-center text-secondary">
                   You do not have any active offer notifications. <Link to="/used-cars" className="text-gold hover:underline ml-1">Browse used cars</Link>
                 </div>
               ) : (
                 standardOffers.map((offer) => (
-                  <div key={offer._id} className="bg-main border border-subtle rounded-lg p-4 flex items-start gap-4">
-                    <div className="w-20 h-14 rounded overflow-hidden bg-section flex-shrink-0">
+                  <div key={offer._id} className="bg-main border border-subtle rounded-lg p-4 flex flex-col sm:flex-row sm:items-start gap-4">
+                    <div className="w-full h-36 sm:w-20 sm:h-14 rounded overflow-hidden bg-section flex-shrink-0">
                       {offer.car?.images?.[0] && !offer.car.images[0].includes('placeholder') ? (
                         <img src={offer.car.images[0]} alt="" className="w-full h-full object-cover" />
                       ) : <div className="w-full h-full flex items-center justify-center text-2xl">CAR</div>}
@@ -461,13 +461,13 @@ const CustomerDashboard = () => {
           {activeTab === 'incoming' && (
             <div className="space-y-4">
               {incomingOffers.length === 0 ? (
-                <div className="bg-main border border-subtle rounded p-8 text-center text-secondary">
+                <div className="bg-main border border-subtle rounded p-6 sm:p-8 text-center text-secondary">
                   No buyer offer notifications are waiting on your listings.
                 </div>
               ) : (
                 incomingOffers.map((offer) => (
                   <div key={offer._id} className="bg-main border border-subtle rounded-lg p-4">
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         <p className="text-primary font-bold">{offer.car?.brand} {offer.car?.model}</p>
                         <p className="text-secondary text-xs mt-1">
@@ -478,10 +478,10 @@ const CustomerDashboard = () => {
                           <div className="mt-2">{statusBadge(offer.reservationStatus)}</div>
                         )}
                       </div>
-                      <div className="flex flex-col items-end gap-3">
+                      <div className="flex flex-col items-start gap-3 sm:items-end">
                         {statusBadge(offer.status)}
                         {needsSellerResponse(offer) ? (
-                          <div className="flex gap-2">
+                          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                             <button
                               onClick={() => handleSellerResponse(offer._id, 'accept')}
                               className="bg-green-600/15 text-green-400 border border-green-700 px-3 py-1.5 rounded text-sm font-bold hover:bg-green-600/25 transition"

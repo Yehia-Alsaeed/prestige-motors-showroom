@@ -80,7 +80,7 @@ const ManageApprovals = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-primary mb-8 border-b border-subtle pb-4 flex items-center gap-3">
+      <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8 border-b border-subtle pb-4 flex flex-wrap items-center gap-3">
         Listing Approvals <span className="bg-gold/20 text-gold text-xs px-2 py-1 rounded-full">{pending.length} Pending</span>
       </h1>
       
@@ -110,14 +110,14 @@ const ManageApprovals = () => {
                   </div>
 
                   {/* Details */}
-                  <div className="flex-1 p-6 flex flex-col justify-between">
+                  <div className="flex-1 p-4 sm:p-6 flex flex-col justify-between">
                     <div>
-                      <div className="flex justify-between items-start mb-2">
-                        <h2 className="text-2xl font-bold text-primary">{listing.brand} {listing.model} {listing.year}</h2>
-                        <span className="text-gold font-bold text-xl">{formatEGP(listing.price)}</span>
+                      <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-start mb-3">
+                        <h2 className="text-xl sm:text-2xl font-bold text-primary leading-tight">{listing.brand} {listing.model} {listing.year}</h2>
+                        <span className="text-gold font-bold text-lg sm:text-xl">{formatEGP(listing.price)}</span>
                       </div>
                       
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 mb-4">
                         <div className="flex items-center gap-2 text-xs text-secondary">
                           <Tag size={14} className="text-gold" /> {listing.bodyType}
                         </div>
@@ -137,7 +137,7 @@ const ManageApprovals = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4 pt-4 border-t border-subtle/50">
+                    <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 pt-4 border-t border-subtle/50">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center text-gold">
                           <User size={14} />
@@ -148,18 +148,18 @@ const ManageApprovals = () => {
                         </div>
                       </div>
 
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <button 
                           onClick={() => handleApprove(listing._id)}
                           disabled={processing}
-                          className="flex items-center gap-2 bg-green-600/10 text-green-500 border border-green-800/50 px-4 py-2 rounded font-bold text-xs hover:bg-green-600/20 transition-all active:scale-95"
+                          className="flex items-center justify-center gap-2 bg-green-600/10 text-green-500 border border-green-800/50 px-4 py-2 rounded font-bold text-xs hover:bg-green-600/20 transition-all active:scale-95"
                         >
                           <CheckCircle size={16} /> Approve Listing
                         </button>
                         <button 
                           onClick={() => { setSelectedListing(listing); setShowRejectModal(true); }}
                           disabled={processing}
-                          className="flex items-center gap-2 bg-red-600/10 text-red-500 border border-red-800/50 px-4 py-2 rounded font-bold text-xs hover:bg-red-600/20 transition-all active:scale-95"
+                          className="flex items-center justify-center gap-2 bg-red-600/10 text-red-500 border border-red-800/50 px-4 py-2 rounded font-bold text-xs hover:bg-red-600/20 transition-all active:scale-95"
                         >
                           <XCircle size={16} /> Reject with Comment
                         </button>
@@ -177,13 +177,13 @@ const ManageApprovals = () => {
       {showRejectModal && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-card w-full max-w-md rounded-xl border border-subtle shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-            <div className="p-6 border-b border-subtle flex justify-between items-center bg-section">
-              <h2 className="font-bold text-primary text-xl flex items-center gap-2">
+            <div className="p-4 sm:p-6 border-b border-subtle flex justify-between items-center bg-section">
+              <h2 className="font-bold text-primary text-lg sm:text-xl flex items-center gap-2">
                 <MessageSquare size={20} className="text-red-500" /> Reject Listing
               </h2>
               <button onClick={() => setShowRejectModal(false)} className="text-secondary hover:text-primary transition"><XCircle size={20}/></button>
             </div>
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <div className="mb-4 text-sm text-secondary">
                 Provide a reason for rejecting <span className="text-primary font-bold">{selectedListing?.brand} {selectedListing?.model}</span>. This will be sent to the customer to help them correct their listing.
               </div>
@@ -194,7 +194,7 @@ const ManageApprovals = () => {
                 value={rejectionReason}
                 onChange={e => setRejectionReason(e.target.value)}
               />
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button 
                   onClick={() => setShowRejectModal(false)}
                   className="flex-1 bg-main border border-subtle text-secondary py-3 rounded font-bold hover:bg-card transition"
