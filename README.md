@@ -64,71 +64,6 @@ prestige-motors-showroom/
   .gitignore      Local dependencies, builds, env files, and private reports
 ```
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 20 or newer
-- MongoDB database, local or hosted
-- Cloudinary account for image uploads
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Yehia-Alsaeed/prestige-motors-showroom.git
-cd prestige-motors-showroom
-```
-
-### 2. Install Dependencies
-
-```bash
-cd backend
-npm install
-
-cd ../frontend
-npm install
-```
-
-### 3. Configure Environment Variables
-
-Copy the example environment files, then replace the placeholder values with your local credentials:
-
-```bash
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
-```
-
-See `backend/.env.example` and `frontend/.env.example` for the full list of required variables.
-
-For same-domain production deployments, `VITE_API_URL` can be set to an empty string so frontend requests use relative `/api` paths.
-
-### 4. Run the Backend
-
-```bash
-cd backend
-node server.js
-```
-
-The API will run at `http://localhost:5000` by default.
-
-### 5. Run the Frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
-The frontend will run at `http://localhost:5173` by default.
-
-## Available Frontend Scripts
-
-```bash
-npm run dev      # Start the Vite development server
-npm run build    # Type-check and build the production frontend
-npm run lint     # Run ESLint
-npm run preview  # Preview the production build locally
-```
-
 ## API Overview
 
 | Route Group | Purpose |
@@ -140,20 +75,8 @@ npm run preview  # Preview the production build locally
 | `/api/customers` | Admin customer status management endpoints |
 | `/api/upload` | Authenticated Cloudinary image uploads |
 
-## Deployment
-
-The project includes `vercel.json` for deploying the frontend and backend together on Vercel:
-
-- `frontend/package.json` is built as a static Vite app.
-- `backend/server.js` is deployed as a Node serverless function.
-- `/api/*` requests are rewritten to the backend.
-- All other routes are served through the frontend app.
-
-Set the backend environment variables in the Vercel project settings before deploying.
-
 ## Security Notes
 
-- `.env` files are ignored and should never be committed.
 - `.env.example` files are committed intentionally with placeholder values only.
 - JWT secrets, database URLs, and Cloudinary credentials must be configured through local or deployment environment variables.
 - Auth, offer, reservation, and API routes include rate limiting.
