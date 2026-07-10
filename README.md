@@ -6,8 +6,7 @@ This repository is structured as a portfolio-ready full-stack project with a Rea
 
 ## Live Project
 
-- Live demo: https://prestige-motor.vercel.app/
-- Repository: https://github.com/Yehia-Alsaeed/prestige-motors-showroom
+- Live website: https://prestige-motor.vercel.app/
 
 ## Screenshots
 
