@@ -1,6 +1,6 @@
 # Prestige Motors Showroom
 
-Prestige Motors is a full-stack MERN showroom platform for browsing premium vehicle inventory, reserving new cars, negotiating used-car offers, submitting customer listings, and managing the complete admin approval workflow.
+Prestige Motors is a responsive full-stack MERN showroom platform for browsing premium vehicle inventory, reserving new cars, negotiating used-car offers, submitting customer listings, and managing the complete admin approval workflow across desktop and mobile.
 
 This repository is structured as a portfolio-ready full-stack project with a React/Vite frontend, an Express/MongoDB API, Cloudinary image uploads, JWT authentication, role-based admin access, and Vercel deployment configuration.
 
@@ -31,6 +31,7 @@ This repository is structured as a portfolio-ready full-stack project with a Rea
 
 ### Customer Experience
 
+- Fully responsive public and customer-facing interface with mobile navigation, readable cards, and mobile-friendly forms.
 - Browse brand-new and pre-owned cars in separate catalog views.
 - Search, filter, and sort inventory by brand, body type, fuel type, transmission, year, mileage, and price.
 - View detailed vehicle pages with image galleries, specifications, pricing, and availability status.
@@ -42,6 +43,7 @@ This repository is structured as a portfolio-ready full-stack project with a Rea
 
 ### Admin Experience
 
+- Mobile-friendly admin shell with responsive navigation, dashboards, tables, cards, and management modals.
 - Protected admin login and admin-only dashboard routes.
 - Dashboard metrics for inventory, customers, reservations, pending offers, and sales pipeline value.
 - Manage available inventory and mark vehicles as sold.
@@ -188,4 +190,4 @@ Set the backend environment variables in the Vercel project settings before depl
 
 ## Project Status
 
-Prestige Motors is a complete portfolio project demonstrating full-stack application development, role-based workflows, API design, database modeling, image uploads, authentication, deployment configuration, and a polished customer/admin interface.
+Prestige Motors is a complete portfolio project demonstrating full-stack application development, role-based workflows, API design, database modeling, image uploads, authentication, deployment configuration, and a polished responsive customer/admin interface.

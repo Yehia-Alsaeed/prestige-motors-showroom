@@ -1,6 +1,6 @@
 # Prestige Motors Frontend
 
-This folder contains the React/Vite frontend for Prestige Motors, a showroom and used-car marketplace interface connected to the Express API in `../backend`.
+This folder contains the responsive React/Vite frontend for Prestige Motors, a showroom and used-car marketplace interface connected to the Express API in `../backend`.
 
 ## Frontend Stack
 
@@ -17,7 +17,8 @@ This folder contains the React/Vite frontend for Prestige Motors, a showroom and
 - Public pages: home, about, contact, new-car catalog, used-car catalog, and car details.
 - Customer pages: registration, login, dashboard, reservations, offers, personal listings, and sell-your-car submission.
 - Admin pages: admin login, dashboard metrics, inventory management, image gallery management, listing approvals, and reservation/offer review.
-- Shared layout: public navigation, admin navigation, route guards, and API request helpers.
+- Shared layout: responsive public navigation, responsive admin navigation, route guards, and API request helpers.
+- Mobile support: hamburger navigation, stacked forms, readable listing cards, horizontally scrollable admin tables, and mobile-safe modals.
 
 ## Project Structure
 
